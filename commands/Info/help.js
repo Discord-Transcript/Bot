@@ -21,7 +21,7 @@ module.exports = {
         if(!args[0]){
        let embed = new Discord.MessageEmbed()
        .setTitle('Help Menu')
-       .setDescription(`Hello ${!message.member.nickname ? message.author.username : message.member.nickname}. All my commands is listed below.`)
+       .setDescription(`Hello ${!message.member.nickname ? message.author.username : message.member.nickname}. All my commands is listed below.\nPrefix: t!`)
        .setFooter(`Requested By ${!message.member.nickname ? message.author.tag : message.member.nickname}`, message.author.displayAvatarURL({dynamic:true}))
        client.commands.filter(x => x.category !== 'dev').each(x => {
            embed.addField(x.name, `Category: ${x.category}\n_${x.description}_`)
