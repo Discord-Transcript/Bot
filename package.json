@@ -1,0 +1,32 @@
+{
+  "name": "discord-transcript-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot that can generate transcripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustBeingAbdi/Discord-Transcript-Bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "Bot",
+    "Transcript",
+    "HTML"
+  ],
+  "author": "Abdi Hassan (JustBeingAbdi)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JustBeingAbdi/Discord-Transcript-Bot/issues"
+  },
+  "homepage": "https://github.com/JustBeingAbdi/Discord-Transcript-Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^9.0.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.29.1",
+    "util": "^0.12.3"
+  }
+}
