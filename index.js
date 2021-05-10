@@ -42,8 +42,7 @@ client.on("message", async(message) => {
         .setDescription("This command is currently disabled by the developer.\n It will be available soon!")
         .setFooter(`Requested By ${!message.member.nickname ? message.author.username : message.member.nickname}`, message.author.displayAvatarURL({dynamic:true}))
     )
-
-
+    if(message.author.id === config.owner) return cmd.execute(client, message, args);
     if(cmd.userPermissions === '1') return cmd.execute(client, message, args);
     if(cmd.userPermissions === '2'){
         if(message.member.hasPermission("MANAGE_MESSAGES")) return cmd.execute(client, message, args);
