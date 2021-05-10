@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/JustBeingAbdi/Discord-Transcript-Bot#readme",
   "dependencies": {
-    "discord-transcript": "^1.2.0",
+    "discord-transcript": "^1.2.1",
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.1",
     "fs": "0.0.1-security",
