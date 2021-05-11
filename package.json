@@ -23,9 +23,9 @@
   },
   "homepage": "https://github.com/JustBeingAbdi/Discord-Transcript-Bot#readme",
   "dependencies": {
-    "discord-transcript": "^1.2.1",
+    "discord-transcript": "^1.3.2",
     "discord.js": "^12.5.3",
-    "dotenv": "^9.0.1",
+    "dotenv": "^9.0.2",
     "fs": "0.0.1-security",
     "moment": "^2.29.1",
     "util": "^0.12.3"
