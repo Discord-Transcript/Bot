@@ -4,7 +4,7 @@ let exporter = require("discord-transcript");
 let emojis = require("../../emoji.json");
 let config = require("../../config.json");
 module.exports = {
-    name: 'export1',
+    name: 'export',
     description: "Exports the messages in this channel to a transcript",
     category: "Exports",
     usage: "export",
