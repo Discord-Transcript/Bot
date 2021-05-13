@@ -1,8 +1,8 @@
-let Discord = require("discord.js");
-let moment = require("moment");
-let exporter = require("discord-transcript");
-let emojis = require("../../emoji.json");
-let config = require("../../config.json");
+let { MessageEmbed } = require("discord.js");
+const { generate } = require("discord-transcript");
+const emojis = require("../../emoji.json");
+const config = require("../../config.json");
+
 module.exports = {
     name: 'export',
     description: "Exports the messages in this channel to a transcript",
@@ -14,46 +14,29 @@ module.exports = {
     enabled: true,
     donator: false,
     cooldown: 5000,
-    
 
+    async execute(client, message) {
+        const msg = await message.channel.send(`${emojis.loading} Exporting Messages... | This may take a while`);
+        let channelMessages = await message.channel.messages.fetch({ limit: 100 });
 
+        const lastMessageId = channelMessages.lastKey();
 
-    async execute(client, message, args, data) {
-        let msg = await message.channel.send(`${emojis.loading} Exporting Messages... | This may take a while`);
+        const extraMessages = await message.channel.messages.fetch({ limit: 100, before: lastMessageId }).catch(err => console.log(err));
 
-       
+        if (extraMessages) channelMessages = channelMessages.concat(extraMessages);
 
-        let channelMessages = await message.channel.messages.fetch({
-            limit: 100
-        });
+        const msgs = channelMessages.array().reverse();
 
-        
+        const link = await generate(message, msgs, message.channel);
 
-        while(channelMessages.size === 100) {
-            let lastMessageId = channelMessages.lastKey();
-            let channelMessages1 = await message.channel.messages.fetch({ limit: 100, before: lastMessageId }).catch(err => console.log(err));
-            if(channelMessages1)
-                channelMessages.concat(channelMessages1);
-        }
-        let msgs = await channelMessages.array().reverse();
+        console.log(`New export: ${link}`);
 
-        let link = await exporter.generate(message, msgs, message.channel);
-        console.log(link);
-
-
-        return msg.edit(`${emojis.check} Exporting Complete`,
-            new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
             .setTitle('Transcript Generated')
             .setColor("GREEN")
             .setDescription(`[Click to view](${link})`)
-            .setFooter(config.footer, client.user.displayAvatarURL())
-        )
+            .setFooter(config.footer, client.user.displayAvatarURL({ dynamic: true }));
 
-
-
-
-
-
-
+        return msg.edit(`${emojis.check} Exporting Complete`, embed);
     }
 }
