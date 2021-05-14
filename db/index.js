@@ -1,6 +1,7 @@
 let Guild = require("./Schemas/Guild");
 let mongoose = require("mongoose");
 let User = require("./Schemas/User");
+let server = require("./server");
 /**
  * @param {number} guildID Discord ID of Guild | Number
  */
@@ -53,6 +54,11 @@ module.exports.LoadData  = async() => {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+
+
+if(process.env.DB_SERVER === 'true'){
+    server.start();
+}
 
 
 return true;
