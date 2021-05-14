@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 
 const {
     Client,
@@ -14,6 +14,14 @@ const client = new Client();
 
 const emojis = require("./emoji.json");
 const config = require("./config.json");
+client.db = require("./db");
+
+client.db.LoadData();
+let db = require("./db");
+
+if(config.heroku === 'true'){
+    require("dotenv").config();
+}
 
 
 client.commands = new Collection();
@@ -35,7 +43,8 @@ client.on("ready", async () => {
 });
 
 client.on("message", async (message) => {
-    const prefix = config.prefix;
+    let guildDB = await db.GetGuild(message.guild.id);
+    const prefix = guildDB.prefix || config.prefix;
 
     if (!message.content.startsWith(prefix)) return; // If message doesn't start with prefix ignore it
 
