@@ -34,10 +34,9 @@ app.get("/", async(req,res) => {
 
 
 app.post("/schema/user", async(req,res) => {
-    let userDB = await db.GetUser(req.query.userID);
-    userDB.access_token = req.query.access_token;
+    
 
-    userDB.save();
+   await db.GetUserAndUpdate(req.query.userID, req.query.access_token);
 
     res.status(200).send({
         status:200,
@@ -57,13 +56,16 @@ app.post("/schema/guild", async(req,res) => {
         guildDB.log = req.query.log.replace("%20", " ");
     }
 
-    guildDB.save();
+    
 
     res.status(200).send({
         status:200,
         message: `Schema Updated`
     });
 
+    setTimeout(function() {
+        guildDB.save();
+    }, 3000)
 })
 
 

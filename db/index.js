@@ -34,6 +34,28 @@ module.exports.GetUser = async(userID) => {
 
     return user;
 }
+
+/**
+ * @param {number} userID Discord ID of User | Number
+ * @param {string} access_token Access_Token
+ */
+module.exports.GetUserAndUpdate = async(userID, access_token) => {
+    let user = await User.findOne({id: userID});
+    if(!user){
+        user = await Guild({
+            id: userID,
+            access_token: access_token
+        });
+
+        user.save();
+        return user;
+        
+    }
+    user.access_token = access_token
+    user.save();
+    return user;
+}
+
 /**
  * @param {string} token Access_Token
  * @returns {boolean} Returns if the Access_Token is valid or not
