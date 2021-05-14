@@ -63,8 +63,8 @@ module.exports.GetUserAndUpdate = async(userID, access_token) => {
 
  module.exports.GetAccess_Token = async(access_token) => {
      let user = await User.findOne({access_token: access_token});
-     if(user) return true;
-     else return false;
+     if(user) return '1';
+     else return '2';
  }
 
 /**

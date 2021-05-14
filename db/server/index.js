@@ -13,7 +13,7 @@ app.use(async function(req, res, next) {
 
     if(req.query.token){
         let det = await db.GetAccess_Token(req.query.token);
-        if(det) return next();
+        if(det === '1') return next();
 
 
     }
