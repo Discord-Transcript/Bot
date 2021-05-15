@@ -2,6 +2,7 @@ let express = require("express");
 let config = require("../../config.json");
 let db = require("../index");
 let cors = require("cors");
+let json = require('express-json');
 
 
 module.exports.start = async() => {
@@ -9,6 +10,7 @@ module.exports.start = async() => {
 
 let app = express();
 app.use(cors())
+app.use(json())
 
 app.use(async function(req, res, next) {
 
@@ -43,6 +45,18 @@ app.post("/schema/user", async(req,res) => {
         status:200,
         message: `Schema Updated`
     });
+});
+
+app.get("/schema/guild", async(req,res) => {
+    let id = req.query.id;
+    let guildDB = await db.GetGuild(id);
+
+    let obj = {
+        prefix: guildDB.prefix,
+        log: guildDB.log
+    }
+
+    res.send(obj);
 });
 
 app.post("/schema/guild", async(req,res) => {

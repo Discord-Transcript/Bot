@@ -33,6 +33,7 @@
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
+    "express-json": "^1.0.0",
     "moment": "^2.29.1"
   }
 }
