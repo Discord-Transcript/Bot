@@ -14,6 +14,8 @@ const client = new Client();
 
 const emojis = require("./emoji.json");
 const config = require("./config.json");
+let handlers = require("./handlers");
+
 client.db = require("./db");
 
 client.db.LoadData();
@@ -37,9 +39,17 @@ folders.forEach(direct => {
 
 
 client.on("ready", async () => {
-    client.user.setActivity(`Transcripts`, {
+    client.user.setActivity(`Discord Transcript | portal.dtranscript.cf`, {
         type: 'WATCHING'
     });
+    if(process.env.DASHBOARD === 'true'){
+    setInterval(async function() {
+        await handlers.dashboard.PostStats(client.users.cache.size, client.guilds.cache.size);
+    }, 180000)
+}
+
+
+
 });
 
 client.on("message", async (message) => {
