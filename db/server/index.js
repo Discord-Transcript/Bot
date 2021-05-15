@@ -1,13 +1,14 @@
 let express = require("express");
 let config = require("../../config.json");
 let db = require("../index");
+let cors = require("cors");
 
 
 module.exports.start = async() => {
 
 
 let app = express();
-
+app.use(cors())
 
 app.use(async function(req, res, next) {
 

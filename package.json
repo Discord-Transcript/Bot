@@ -28,6 +28,7 @@
   "homepage": "https://github.com/Discord-Transcript/Bot#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "discord-transcript": "^1.3.2",
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.2",
