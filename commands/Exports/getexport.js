@@ -14,7 +14,7 @@ module.exports = {
     donator: false,
     cooldown: 5000,
 
-    async execute(client, message) {
+    async execute(client, message, args) {
         let id = args[0] 
         if(!id) return message.channel.send(`Invalid ID`);
 
