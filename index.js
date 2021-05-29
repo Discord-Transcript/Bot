@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 
 const {
     Client,
@@ -20,9 +20,6 @@ client.db = require("./db");
 
 client.db.LoadData();
 let db = require("./db");
-
-
-    require("dotenv").config();
 
 
 
