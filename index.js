@@ -21,9 +21,9 @@ client.db = require("./db");
 client.db.LoadData();
 let db = require("./db");
 
-if(config.heroku === 'true'){
+
     require("dotenv").config();
-}
+
 
 
 client.commands = new Collection();

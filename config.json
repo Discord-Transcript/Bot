@@ -1,5 +1,6 @@
 {
     "footer": "Discord Transcript | dtranscript.cf",
     "owner": "825324542209163284",
-    "heroku": "false"
+    "heroku": "false",
+    "prefix": "t!"
 }
